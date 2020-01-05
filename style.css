@@ -1,0 +1,175 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    font-size: 62.5%;
+    direction: rtl;
+}
+
+.content {
+    font-size: 2rem;
+    max-width: 40rem;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+.splash-screen {
+    background-color: #fff;
+    color: orangered;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    transition: all 2s;
+    box-shadow: 1px 2px 10px rgba(0, 0, 0, .3);
+    position: relative;
+    z-index: 9;
+}
+
+.start-game .splash-screen {
+    transform: translateY(-110%);
+}
+
+.splash-screen__title {
+    font-size: 4rem;
+    transition: .2s all .3s;
+    transform: translateY(-1rem);
+    opacity: 0;
+}
+
+.ready .splash-screen__title {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.splash-screen__img {
+    background-image: url(cat.gif);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    max-width: 414px;
+    max-height: 300px;
+    background-blend-mode: multiply;
+    transition: 1s all .3s;
+    transform: scale(0);
+    opacity: 0;
+}
+
+.splash-screen__start {
+    transition: 1s all .3s;
+    transform: scale(0);
+    opacity: 0;
+}
+
+.ready .splash-screen__img,
+.ready .splash-screen__start {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.game-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    background: #ff9278;
+    width: 100%;
+}
+
+.score-container {
+    color: #fff;
+    font-size: 1.2rem;
+    display: flex;
+    padding: .5rem;
+}
+
+.score-container>div {
+    width: 100%;
+    text-align: center;
+}
+
+.game-interface {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    position: absolute;
+    height: calc( 100% - 8rem );
+    width: 90%;
+    left: 50%;
+    top: 53%;
+    transform: translate(-50%, -50%);
+}
+
+.game-interface__cube {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-interface__circle {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+}
+
+.game-interface__circle::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-shadow: inset 0 7px 15px rgba(0, 0, 0, 0.4);
+    z-index: 99;
+    top: 0;
+    left: 0;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.game-interface__target {
+    background-image: url(tenor.gif);
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: all .5s;
+    position: relative;
+    transform: translateY(110%);
+}
+
+.game-interface__target::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url(heart.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transition: all .5s;
+    transform: scale(0);
+}
+
+.gotcha.game-interface__target{
+    pointer-events: none;
+}
+
+.gotcha.game-interface__target::after {
+    transform: scale(1);
+}
+
+.on .game-interface__target {
+    transform: translateY(0);
+}
